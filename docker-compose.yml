@@ -1,30 +1,34 @@
 # version: '3.8'
 
 services:
-  laravel:
+  laravel_breeze:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: laravel_app
+    container_name: laravel_breeze_app
     ports:
-      - "8000:8000"
+      - "8001:8000"
     volumes:
       - ./src:/app
     depends_on:
-      - sqlserver
+      - sqlserver_breeze
     environment:
       DB_CONNECTION: sqlsrv
-      DB_HOST: sqlserver
+      DB_HOST: sqlserver_breeze
       DB_PORT: 1433
-      DB_DATABASE: laravel_db
+      DB_DATABASE: sonrisas_db
       DB_USERNAME: sa
-      DB_PASSWORD: MiPassword2024
+      DB_PASSWORD: MiPassword2025
 
-  sqlserver:
+  sqlserver_breeze:
     image: mcr.microsoft.com/mssql/server:2022-latest
-    container_name: sql_server
+    container_name: sql_server_breeze
     environment:
-      SA_PASSWORD: "MiPassword2024"
+      SA_PASSWORD: "MiPassword2025"
       ACCEPT_EULA: "Y"
     ports:
-      - "1433:1433"
+      - "1435:1433"
+    volumes:
+      - sqlserver_breeze_data:/var/opt/mssql
+volumes:
+  sqlserver_breeze_data:

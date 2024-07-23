@@ -17,4 +17,4 @@ COPY ./src /app
 # Establecer el directorio de trabajo
 WORKDIR /app
 # Exponer el puerto de la aplicación
-EXPOSE 8000
+EXPOSE 8001
